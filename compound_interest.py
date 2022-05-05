@@ -2,6 +2,9 @@
 # 5/5/22
 # This is a micro-service python program written for my CS361 partner Holly Lucas.
 
+# To get the correct output, run compound_interest.py and then send data.txt
+# 2 variables of type 'str', delineated by a space. The output will be written to result.txt with type 'str'.
+
 # GLOBAL VARS
 interest_rate = .10
 compounds_per_year = 12
@@ -32,6 +35,7 @@ def get_variables():
             break
 
 
+# compound_interest_formula taken from https://structx.com/annual_compound_interest_with_contributions.html
 def compound_interest_formula(monthly_contribution, years):
     future_value = (monthly_contribution * (((1 + interest_rate / compounds_per_year) **
                                              (years * compounds_per_year)) - 1)) / (interest_rate / compounds_per_year)
