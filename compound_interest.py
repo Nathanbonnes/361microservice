@@ -5,6 +5,8 @@
 # To get the correct output, run compound_interest.py and then send data.txt
 # 2 variables of type 'str', delineated by a space. The output will be written to result.txt with type 'str'.
 
+import time
+
 # GLOBAL VARS
 interest_rate = .10
 compounds_per_year = 12
@@ -12,27 +14,24 @@ principal = 0
 
 
 def get_variables():
-    while True:
-        # listen to data.txt file.
-        data_file = open('data.txt', 'r')
-        line = data_file.readline()
-        data = line.split()
+    # listen to data.txt file.
+    data_file = open('data.txt', 'r')
+    line = data_file.readline()
+    data = line.split()
+    data_file.close()
+
+    # once a line is read, process data.
+    # set variables, calculate future value with formula function below.
+    if line:
+        monthly_contributions = int(data[0])
+        years = int(data[1])
         data_file.close()
-
-        if not line:
-            continue
-
-        # once a line is read, process data.
-        # set variables, calculate future value with formula function below.
-        else:
-            monthly_contributions = int(data[0])
-            years = int(data[1])
-            data_file.close()
-            future_value = compound_interest_formula(monthly_contributions, years)
-            result_file = open('result.txt', 'w')
-            result_file.write(str(future_value))
-            result_file.close()
-            break
+        future_value = compound_interest_formula(monthly_contributions, years)
+        result_file = open('result.txt', 'w')
+        result_file.write(str(future_value))
+        time.sleep(3)
+        result_file.close()
+        return
 
 
 # compound_interest_formula taken from https://structx.com/annual_compound_interest_with_contributions.html
@@ -43,4 +42,7 @@ def compound_interest_formula(monthly_contribution, years):
 
 
 # Testing
-get_variables()
+if __name__ == "__main__":
+    while True:
+        time.sleep(3)
+        get_variables()
