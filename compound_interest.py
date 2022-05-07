@@ -17,6 +17,7 @@ def get_variables():
     # listen to data.txt file.
     data_file = open('data.txt', 'r')
     line = data_file.readline()
+    print(line)
     data = line.split()
     data_file.close()
 
@@ -27,6 +28,7 @@ def get_variables():
         years = int(data[1])
         data_file.close()
         future_value = compound_interest_formula(monthly_contributions, years)
+        print(future_value)
         result_file = open('result.txt', 'w')
         result_file.write(str(future_value))
         time.sleep(3)
